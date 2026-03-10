@@ -1,14 +1,15 @@
-import { ChipsStatus, type IChipsData } from '@/app/types';
+import { ChipsStatus } from '@/shared/ui/custom-chip';
+import type { IChipsData } from '@/app/types';
 
 export const chips: IChipsData[] = [
   { id: 1, text: 'Чипс 1', status: ChipsStatus.default },
   { id: 2, text: 'Чипс 2', status: ChipsStatus.info },
   { id: 3, text: 'Чипс 3', status: ChipsStatus.success },
   { id: 4, text: 'Чипс 4', status: ChipsStatus.warning },
-  { id: 5, text: 'Чипс 5', status: ChipsStatus.error },
-  { id: 6, text: 'Чипс 6', status: ChipsStatus.default },
-  { id: 7, text: 'Чипс 7', status: ChipsStatus.info },
-  { id: 8, text: 'Чипс 8', status: ChipsStatus.success },
+  { id: 5, text: 'Чипс длинный 5', status: ChipsStatus.error },
+  { id: 6, text: 'Чипс длинный 6', status: ChipsStatus.default },
+  { id: 7, text: '7', status: ChipsStatus.info },
+  { id: 8, text: '8', status: ChipsStatus.success },
   { id: 9, text: 'Чипс 9', status: ChipsStatus.warning },
   { id: 10, text: 'Чипс 10', status: ChipsStatus.error },
   { id: 11, text: 'Чипс 11', status: ChipsStatus.default },
