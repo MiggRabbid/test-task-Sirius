@@ -7,6 +7,7 @@ import prettier from 'eslint-plugin-prettier';
 import jsxA11y from 'eslint-plugin-jsx-a11y';
 import importPlugin from 'eslint-plugin-import';
 import tseslint from 'typescript-eslint';
+import path from 'node:path';
 import prettierConfig from './prettier.config.cjs';
 
 export default tseslint.config(
@@ -47,14 +48,17 @@ export default tseslint.config(
       react: {
         version: 'detect',
       },
+      'import/parsers': {
+        '@typescript-eslint/parser': ['.ts', '.tsx'],
+      },
       'import/resolver': {
         typescript: {
           alwaysTryTypes: true,
-          project: './tsconfig.json',
+          project: path.resolve('./tsconfig.app.json'),
         },
         alias: {
           map: [
-            ['@', './src'],
+            ['@', path.resolve('./src')],
           ],
           extensions: ['.js', '.jsx', '.ts', '.tsx'],
         },
@@ -94,4 +98,3 @@ export default tseslint.config(
     },
   },
 )
-
