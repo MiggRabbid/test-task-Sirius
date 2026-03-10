@@ -1,9 +1,8 @@
 @use 'tailwindcss';
 
 body {
-  @extend %font-bold-22;
-  width: 100%;
-  min-height: 100dvh;
+  @apply bg-slate-100;
+  @extend %font-bold-18;
   position: relative;
 }
 
