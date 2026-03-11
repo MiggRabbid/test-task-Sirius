@@ -14,6 +14,9 @@ tc:
 d:
 	npm  run dev
 
+p:
+	npm run server
+
 b:
 	rm -rf dist
 	npm run build
