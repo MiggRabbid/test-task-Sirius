@@ -1,22 +1,27 @@
 import { useState } from 'react';
-import clsx from 'clsx';
 import { CustomButton } from '@/shared/ui/custom-button';
 
 import type { TWidthOption, TWidthSwitcherProps } from './WidthSwitcher.types';
 
-const WIDTH_OPTIONS: Array<{ label: TWidthOption; className: string }> = [
-  { label: '288px', className: 'w-74' },
-  { label: '384px', className: 'w-96' },
-  { label: '1024px', className: 'w-full max-w-[1024px]' },
-  { label: '1280px', className: 'w-full max-w-[1280px]' },
-  { label: 'full', className: 'w-full' },
+const WIDTH_OPTIONS: Array<{
+  label: TWidthOption;
+  style: { maxWidth: string; width: string };
+}> = [
+  { label: '288px', style: { width: '288px', maxWidth: '288px' } },
+  { label: '384px', style: { width: '384px', maxWidth: '384px' } },
+  { label: '1024px', style: { width: '100%', maxWidth: '1024px' } },
+  { label: '1280px', style: { width: '100%', maxWidth: '1280px' } },
+  { label: 'full', style: { width: '100%', maxWidth: '100%' } },
 ];
 
 const WidthSwitcher = ({ children }: TWidthSwitcherProps) => {
   const [selectedWidth, setSelectedWidth] = useState<TWidthOption>('full');
 
-  const activeWidthClassName =
-    WIDTH_OPTIONS.find(({ label }) => label === selectedWidth)?.className ?? 'w-full';
+  const activeWidthStyle =
+    WIDTH_OPTIONS.find(({ label }) => label === selectedWidth)?.style ?? {
+      width: '100%',
+      maxWidth: '100%',
+    };
 
   return (
     <div className="flex flex-col gap-4">
@@ -38,10 +43,8 @@ const WidthSwitcher = ({ children }: TWidthSwitcherProps) => {
 
       <div className="flex w-full justify-center">
         <div
-          className={clsx(
-            'rounded-lg bg-white px-3! py-2! transition-all duration-200',
-            activeWidthClassName,
-          )}
+          className="rounded-lg bg-white px-3! py-2! transition-[width,max-width] duration-200"
+          style={activeWidthStyle}
         >
           {children}
         </div>
