@@ -17,6 +17,9 @@ d:
 p:
 	npm run server
 
+gh:
+	npm run deploy
+
 b:
 	rm -rf dist
 	npm run build
