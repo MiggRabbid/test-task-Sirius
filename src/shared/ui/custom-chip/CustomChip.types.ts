@@ -1,4 +1,11 @@
-import type { ComponentPropsWithoutRef, ElementType, MouseEvent, ReactNode } from 'react';
+import type {
+  ComponentPropsWithoutRef,
+  ElementType,
+  ForwardedRef,
+  MouseEvent,
+  ReactElement,
+  ReactNode,
+} from 'react';
 
 export enum ChipsStatus {
   // eslint-disable-next-line no-unused-vars
@@ -13,7 +20,21 @@ export enum ChipsStatus {
   warning = 'warning',
 }
 
-type ChipVariant = 'filled' | 'outlined';
+export type ChipVariant = 'filled' | 'outlined';
+
+export type CustomChipSwitcherValue = ChipVariant | boolean;
+
+export interface CustomChipSwitcherOption<T extends CustomChipSwitcherValue> {
+  label: string;
+  value: T;
+}
+
+export interface CustomChipVariantSwitcherProps<T extends CustomChipSwitcherValue> {
+  // eslint-disable-next-line no-unused-vars
+  onChange: (value: T) => void;
+  options: readonly CustomChipSwitcherOption<T>[];
+  value: T;
+}
 
 type CustomChipOwnProps<C extends ElementType> = {
   className?: string;
@@ -30,3 +51,8 @@ type CustomChipOwnProps<C extends ElementType> = {
 
 export type CustomChipProps<C extends ElementType = 'button'> = CustomChipOwnProps<C> &
   Omit<ComponentPropsWithoutRef<C>, keyof CustomChipOwnProps<C>>;
+
+export type CustomChipComponent = <C extends ElementType = 'button'>(
+  // eslint-disable-next-line no-unused-vars
+  props: CustomChipProps<C> & { ref?: ForwardedRef<Element> },
+) => ReactElement | null;
