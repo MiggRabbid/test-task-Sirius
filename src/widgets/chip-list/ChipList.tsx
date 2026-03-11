@@ -1,24 +1,21 @@
 import { useEffect, useRef, useState } from 'react';
 import { CustomPopover, useCustomPopover } from '@/shared/ui/custom-popover';
-import { CustomChip, type ChipVariant } from '@/shared/ui/custom-chip';
+import { type TChipVariant } from '@/shared/ui/custom-chip';
 import { useVisibleChipCount } from './lib/useVisibleChipCount';
-import ChipListControls from './ui/ChipListControls';
 import ChipListMeasurement from './ui/ChipListMeasurement';
+import ChipListPopoverContent from './ui/ChipListPopoverContent';
+import ChipListVisibleRow from './ui/ChipListVisibleRow';
 
 import type { IChipsData } from '@/app/types';
-import {
-  CHIP_CLICKABLE_OPTIONS,
-  CHIP_VARIANT_OPTIONS,
-  DEFAULT_GAP,
-} from './ChipList.config';
+import { DEFAULT_GAP } from './ChipList.config';
 
-interface ChipListProps {
+interface IChipListProps {
+  isChipClickable: boolean;
   items: IChipsData[];
+  selectedVariant: TChipVariant;
 }
 
-function ChipList({ items }: ChipListProps) {
-  const [selectedVariant, setSelectedVariant] = useState<ChipVariant>('filled');
-  const [isChipClickable, setIsChipClickable] = useState(true);
+const ChipList = ({ isChipClickable, items, selectedVariant }: IChipListProps) => {
   const [selectedChipId, setSelectedChipId] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const triggerButtonRef = useRef<HTMLButtonElement | null>(null);
@@ -32,6 +29,12 @@ function ChipList({ items }: ChipListProps) {
       items.some(({ id }) => id === prevSelectedChipId) ? prevSelectedChipId : null,
     );
   }, [items]);
+
+  useEffect(() => {
+    if (!isChipClickable) {
+      setSelectedChipId(null);
+    }
+  }, [isChipClickable]);
 
   const { visibleCount } = useVisibleChipCount({
     chipRefs,
@@ -54,56 +57,17 @@ function ChipList({ items }: ChipListProps) {
 
   return (
     <>
-      <ChipListControls
-        variantSwitcher={{
-          options: CHIP_VARIANT_OPTIONS,
-          onChange: setSelectedVariant,
-          value: selectedVariant,
-        }}
-        clickableSwitcher={{
-          options: CHIP_CLICKABLE_OPTIONS,
-          onChange: (newState) => {
-            // При выключении интерактивности убираем активный чип,
-            // чтобы визуальное выделение не конфликтовало с пассивным состоянием.
-            if (!newState) {
-              setSelectedChipId(null);
-            }
-
-            setIsChipClickable(newState);
-          },
-          value: isChipClickable,
-        }}
+      <ChipListVisibleRow
+        containerRef={containerRef}
+        hiddenItemsCount={hiddenItems.length}
+        isChipClickable={isChipClickable}
+        items={visibleItems}
+        onChipClick={handleChipClick}
+        onOverflowClick={() => handleToggle(triggerButtonRef.current)}
+        selectedChipId={selectedChipId}
+        selectedVariant={selectedVariant}
+        triggerButtonRef={triggerButtonRef}
       />
-
-      <div
-        ref={containerRef}
-        className="flex w-full items-start justify-start gap-3 overflow-hidden"
-        data-isChipClickable={isChipClickable ? 'true' : 'false'}
-      >
-        {visibleItems.map(({ id, text, status }) => (
-          <CustomChip
-            key={id}
-            clickable={isChipClickable}
-            label={text}
-            status={status}
-            selected={selectedChipId === id}
-            variant={selectedVariant}
-            onClick={() => handleChipClick(id)}
-          />
-        ))}
-        {hiddenItems.length > 0 && (
-          <CustomChip
-            ref={triggerButtonRef}
-            label="..."
-            className="min-w-13 px-4!"
-            variant={selectedVariant}
-            // Кнопка переполнения всегда остаётся кликабельной,
-            // иначе поповер со скрытыми чипами нельзя будет открыть.
-            onClick={() => handleToggle(triggerButtonRef.current)}
-            clickable
-          />
-        )}
-      </div>
 
       <ChipListMeasurement
         chipRefs={chipRefs}
@@ -115,23 +79,16 @@ function ChipList({ items }: ChipListProps) {
       />
 
       <CustomPopover open={isOpen} anchorEl={anchorEl} onClose={handleClose}>
-        <div className="flex max-w-[320px] flex-wrap gap-3">
-          {hiddenItems.map(({ id, text, status }) => (
-            <CustomChip
-              key={id}
-              clickable={isChipClickable}
-              component={isChipClickable ? 'button' : 'div'}
-              label={text}
-              status={status}
-              selected={selectedChipId === id}
-              variant={selectedVariant}
-              onClick={() => handleChipClick(id)}
-            />
-          ))}
-        </div>
+        <ChipListPopoverContent
+          isChipClickable={isChipClickable}
+          items={hiddenItems}
+          onChipClick={handleChipClick}
+          selectedChipId={selectedChipId}
+          selectedVariant={selectedVariant}
+        />
       </CustomPopover>
     </>
   );
-}
+};
 
 export default ChipList;

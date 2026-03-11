@@ -1,19 +1,16 @@
-import { CustomChip, type ChipVariant } from '@/shared/ui/custom-chip';
+import { CustomChip, type TChipVariant } from '@/shared/ui/custom-chip';
 
 import type { RefObject } from 'react';
 import type { IChipsData } from '@/app/types';
+import type { ChipElementRefs } from '../ChipList.types';
 
-type ChipElementRefs = {
-  current: (HTMLButtonElement | null)[];
-};
-
-interface ChipListMeasurementProps {
+interface IChipListMeasurementProps {
   chipRefs: ChipElementRefs;
   isChipClickable: boolean;
   items: IChipsData[];
   measureMoreButtonRef: RefObject<HTMLButtonElement | null>;
   selectedChipId: number | null;
-  selectedVariant: ChipVariant;
+  selectedVariant: TChipVariant;
 }
 
 const ChipListMeasurement = ({
@@ -23,7 +20,7 @@ const ChipListMeasurement = ({
   measureMoreButtonRef,
   selectedChipId,
   selectedVariant,
-}: ChipListMeasurementProps) => {
+}: IChipListMeasurementProps) => {
   return (
     <div
       aria-hidden="true"
@@ -41,7 +38,6 @@ const ChipListMeasurement = ({
               chipRefs.current[index] = element as HTMLButtonElement | null;
             }}
             clickable={isChipClickable}
-            component={isChipClickable ? 'button' : 'div'}
             label={text}
             status={status}
             selected={selectedChipId === id}

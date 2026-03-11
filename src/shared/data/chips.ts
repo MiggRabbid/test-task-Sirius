@@ -15,4 +15,6 @@ export const chips: IChipsData[] = [
   { id: 11, text: 'Чипс 11', status: ChipsStatus.default },
   { id: 12, text: 'Чипс 12', status: ChipsStatus.info },
   { id: 13, text: 'Чипс 13', status: ChipsStatus.success },
+  { id: 14, text: 'Чипс 14', status: ChipsStatus.default },
+  { id: 15, text: 'Чипс 15', status: ChipsStatus.default },
 ];

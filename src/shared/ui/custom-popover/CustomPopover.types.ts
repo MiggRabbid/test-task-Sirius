@@ -1,18 +1,18 @@
 import type { PopoverProps } from '@mui/material';
 import type { PropsWithChildren } from 'react';
 
-export interface CustomPopoverProps
+export interface ICustomPopoverProps
   extends PropsWithChildren,
     Pick<PopoverProps, 'anchorEl' | 'open'> {
   className?: string;
   onClose: () => void;
 }
 
-export interface UseCustomPopoverParams {
+export interface IUseCustomPopoverParams {
   isEnabled?: boolean;
 }
 
-export interface UseCustomPopoverResult<T extends HTMLElement> {
+export interface IUseCustomPopoverResult<T extends HTMLElement> {
   anchorEl: T | null;
   isOpen: boolean;
   handleClose: () => void;

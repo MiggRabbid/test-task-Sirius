@@ -1,5 +1,5 @@
 import type { PropsWithChildren } from 'react';
 
-export type WidthOption = 'full' | '384px' | '1024px';
+export type TWidthOption = '288px' | '384px' | '1024px' | '1280px' | 'full';
 
-export type WidthSwitcherProps = PropsWithChildren;
+export type TWidthSwitcherProps = PropsWithChildren;

@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import type {
-  UseCustomPopoverParams,
-  UseCustomPopoverResult,
+  IUseCustomPopoverParams,
+  IUseCustomPopoverResult,
 } from './CustomPopover.types';
 
 export const useCustomPopover = <T extends HTMLElement>({
   isEnabled = true,
-}: UseCustomPopoverParams = {}): UseCustomPopoverResult<T> => {
+}: IUseCustomPopoverParams = {}): IUseCustomPopoverResult<T> => {
   const [anchorEl, setAnchorEl] = useState<T | null>(null);
 
   useEffect(() => {

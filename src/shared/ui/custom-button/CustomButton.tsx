@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 
-import type { CustomButtonProps } from './';
+import type { ICustomButtonProps } from './';
 
 const CustomButton = ({
   children,
@@ -8,7 +8,7 @@ const CustomButton = ({
   isActive = false,
   type = 'button',
   ...props
-}: CustomButtonProps) => {
+}: ICustomButtonProps) => {
   return (
     <button
       type={type}

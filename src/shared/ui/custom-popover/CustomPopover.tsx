@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { Popover } from '@mui/material';
 
-import type { CustomPopoverProps } from './CustomPopover.types';
+import type { ICustomPopoverProps } from './CustomPopover.types';
 
 const CustomPopover = ({
   anchorEl,
@@ -9,7 +9,7 @@ const CustomPopover = ({
   className,
   onClose,
   open,
-}: CustomPopoverProps) => {
+}: ICustomPopoverProps) => {
   return (
     <Popover
       open={open}

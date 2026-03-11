@@ -1,14 +1,15 @@
 import { CustomButton } from '@/shared/ui/custom-button';
-import type {
-  CustomChipSwitcherValue,
-  CustomChipVariantSwitcherProps,
-} from '@/shared/ui/custom-chip';
 
-const CustomChipVariantSwitcher = <T extends CustomChipSwitcherValue>({
+import type {
+  TCustomChipSwitcherValue,
+  IOptionSwitcherProps,
+} from './OptionSwitcher.types';
+
+const OptionSwitcher = <T extends TCustomChipSwitcherValue>({
   onChange,
   options,
   value,
-}: CustomChipVariantSwitcherProps<T>) => {
+}: IOptionSwitcherProps<T>) => {
   return (
     <div className="flex flex-wrap justify-end gap-2">
       {options.map((option) => (
@@ -26,4 +27,4 @@ const CustomChipVariantSwitcher = <T extends CustomChipSwitcherValue>({
   );
 };
 
-export default CustomChipVariantSwitcher;
+export default OptionSwitcher;

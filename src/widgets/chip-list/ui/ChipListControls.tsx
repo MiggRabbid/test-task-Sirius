@@ -1,23 +1,21 @@
-import CustomChipVariantSwitcher from './CustomChipVariantSwitcher';
+import OptionSwitcher from './OptionSwitcher';
 
-import type {
-  ChipVariant,
-  CustomChipVariantSwitcherProps,
-} from '@/shared/ui/custom-chip';
+import type { TChipVariant } from '@/shared/ui/custom-chip';
+import type { IOptionSwitcherProps } from './OptionSwitcher.types';
 
-type ChipListControlsProps = {
-  clickableSwitcher: CustomChipVariantSwitcherProps<boolean>;
-  variantSwitcher: CustomChipVariantSwitcherProps<ChipVariant>;
-};
+interface IChipListControlsProps {
+  clickableSwitcher: IOptionSwitcherProps<boolean>;
+  variantSwitcher: IOptionSwitcherProps<TChipVariant>;
+}
 
 const ChipListControls = ({
   clickableSwitcher,
   variantSwitcher,
-}: ChipListControlsProps) => {
+}: IChipListControlsProps) => {
   return (
     <div className="mt-4 mb-4! flex flex-wrap justify-end gap-2">
-      <CustomChipVariantSwitcher {...variantSwitcher} />
-      <CustomChipVariantSwitcher {...clickableSwitcher} />
+      <OptionSwitcher {...variantSwitcher} />
+      <OptionSwitcher {...clickableSwitcher} />
     </div>
   );
 };

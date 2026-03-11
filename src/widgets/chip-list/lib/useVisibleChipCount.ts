@@ -1,20 +1,17 @@
 import { useLayoutEffect, useState } from 'react';
 
 import type { RefObject } from 'react';
+import type { TChipElementRefs } from '../ChipList.types';
 
-type ChipElementRefs = {
-  current: (HTMLButtonElement | null)[];
-};
-
-interface UseVisibleChipCountParams {
-  chipRefs: ChipElementRefs;
+interface IUseVisibleChipCountParams {
+  chipRefs: TChipElementRefs;
   containerRef: RefObject<HTMLDivElement | null>;
   gap: number;
   itemsCount: number;
   measureMoreButtonRef: RefObject<HTMLButtonElement | null>;
 }
 
-interface UseVisibleChipCountResult {
+interface IUseVisibleChipCountResult {
   visibleCount: number;
 }
 
@@ -24,7 +21,7 @@ export const useVisibleChipCount = ({
   gap,
   itemsCount,
   measureMoreButtonRef,
-}: UseVisibleChipCountParams): UseVisibleChipCountResult => {
+}: IUseVisibleChipCountParams): IUseVisibleChipCountResult => {
   const [visibleCount, setVisibleCount] = useState(itemsCount);
 
   useLayoutEffect(() => {

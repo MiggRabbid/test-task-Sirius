@@ -2,16 +2,18 @@ import { useState } from 'react';
 import clsx from 'clsx';
 import { CustomButton } from '@/shared/ui/custom-button';
 
-import type { WidthOption, WidthSwitcherProps } from './WidthSwitcher.types';
+import type { TWidthOption, TWidthSwitcherProps } from './WidthSwitcher.types';
 
-const WIDTH_OPTIONS: Array<{ label: WidthOption; className: string }> = [
-  { label: 'full', className: 'w-full' },
+const WIDTH_OPTIONS: Array<{ label: TWidthOption; className: string }> = [
+  { label: '288px', className: 'w-74' },
   { label: '384px', className: 'w-96' },
   { label: '1024px', className: 'w-full max-w-[1024px]' },
+  { label: '1280px', className: 'w-full max-w-[1280px]' },
+  { label: 'full', className: 'w-full' },
 ];
 
-function WidthSwitcher({ children }: WidthSwitcherProps) {
-  const [selectedWidth, setSelectedWidth] = useState<WidthOption>('full');
+const WidthSwitcher = ({ children }: TWidthSwitcherProps) => {
+  const [selectedWidth, setSelectedWidth] = useState<TWidthOption>('full');
 
   const activeWidthClassName =
     WIDTH_OPTIONS.find(({ label }) => label === selectedWidth)?.className ?? 'w-full';
@@ -46,6 +48,6 @@ function WidthSwitcher({ children }: WidthSwitcherProps) {
       </div>
     </div>
   );
-}
+};
 
 export default WidthSwitcher;
