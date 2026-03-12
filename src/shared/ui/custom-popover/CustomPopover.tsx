@@ -23,6 +23,12 @@ const CustomPopover = ({
           className: clsx('mt-2 rounded-md! p-4! shadow-lg!', className),
         },
       }}
+      sx={{
+        '& .MuiPopover-paper': {
+          marginTop: '10px !important',
+          marginLeft: '10px !important',
+        },
+      }}
     >
       {children}
     </Popover>
