@@ -1,8 +1,9 @@
+// Компоненты
 import { CustomButton } from '@/shared/ui/custom-button';
-
+// Типизация
 import type {
-  TCustomChipSwitcherValue,
   IOptionSwitcherProps,
+  TCustomChipSwitcherValue,
 } from './OptionSwitcher.types';
 
 const OptionSwitcher = <T extends TCustomChipSwitcherValue>({
