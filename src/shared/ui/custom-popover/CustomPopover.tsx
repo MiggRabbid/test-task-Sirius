@@ -1,6 +1,7 @@
-import clsx from 'clsx';
+// Библиотеки
 import { Popover } from '@mui/material';
-
+import clsx from 'clsx';
+// Типизация
 import type { ICustomPopoverProps } from './CustomPopover.types';
 
 const CustomPopover = ({

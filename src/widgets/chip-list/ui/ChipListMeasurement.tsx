@@ -1,11 +1,12 @@
+// Компоненты
 import { CustomChip, type TChipVariant } from '@/shared/ui/custom-chip';
-
+// Типизация
 import type { RefObject } from 'react';
 import type { IChipsData } from '@/app/types';
-import type { ChipElementRefs } from '../ChipList.types';
+import type { TChipElementRefs } from '../ChipList.types';
 
 interface IChipListMeasurementProps {
-  chipRefs: ChipElementRefs;
+  chipRefs: TChipElementRefs;
   isChipClickable: boolean;
   items: IChipsData[];
   measureMoreButtonRef: RefObject<HTMLButtonElement | null>;

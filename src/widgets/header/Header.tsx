@@ -1,3 +1,4 @@
+// Библиотеки
 import { Box, Typography } from '@mui/material';
 
 function Header() {

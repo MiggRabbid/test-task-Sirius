@@ -3,6 +3,12 @@ import type { RefObject } from 'react';
 import type { IChipsData } from '@/app/types';
 import type { TChipVariant } from '@/shared/ui/custom-chip';
 
+export interface IChipListProps {
+  isChipClickable: boolean;
+  items: IChipsData[];
+  selectedVariant: TChipVariant;
+}
+
 export type TChipElementRefs = {
   current: (HTMLButtonElement | null)[];
 };

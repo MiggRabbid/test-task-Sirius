@@ -1,5 +1,6 @@
+// Компоненты
 import { CustomChip } from '@/shared/ui/custom-chip';
-
+// Типизация
 import type { IChipListPopoverContentProps } from '../ChipList.types';
 
 const ChipListPopoverContent = ({

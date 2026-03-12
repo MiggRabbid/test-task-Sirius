@@ -1,19 +1,15 @@
+// Библиотеки
 import { useEffect, useRef, useState } from 'react';
-import { CustomPopover, useCustomPopover } from '@/shared/ui/custom-popover';
-import { type TChipVariant } from '@/shared/ui/custom-chip';
+// Логика
+import { DEFAULT_GAP } from './ChipList.config';
 import { useVisibleChipCount } from './lib/useVisibleChipCount';
+// Компоненты
+import { CustomPopover, useCustomPopover } from '@/shared/ui/custom-popover';
 import ChipListMeasurement from './ui/ChipListMeasurement';
 import ChipListPopoverContent from './ui/ChipListPopoverContent';
 import ChipListVisibleRow from './ui/ChipListVisibleRow';
-
-import type { IChipsData } from '@/app/types';
-import { DEFAULT_GAP } from './ChipList.config';
-
-interface IChipListProps {
-  isChipClickable: boolean;
-  items: IChipsData[];
-  selectedVariant: TChipVariant;
-}
+// Типизация
+import type { IChipListProps } from './ChipList.types';
 
 const ChipList = ({ isChipClickable, items, selectedVariant }: IChipListProps) => {
   const [selectedChipId, setSelectedChipId] = useState<number | null>(null);

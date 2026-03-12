@@ -1,5 +1,6 @@
+// Библиотеки
 import clsx from 'clsx';
-
+// Типизация
 import type { ICustomButtonProps } from './';
 
 const CustomButton = ({

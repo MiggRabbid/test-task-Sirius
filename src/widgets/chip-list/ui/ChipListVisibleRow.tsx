@@ -1,5 +1,6 @@
+// Компоненты
 import { CustomChip } from '@/shared/ui/custom-chip';
-
+// Типизация
 import type { IChipListVisibleRowProps } from '../ChipList.types';
 
 const ChipListVisibleRow = ({

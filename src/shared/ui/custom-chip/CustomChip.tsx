@@ -1,6 +1,7 @@
-import { forwardRef, memo } from 'react';
+// Библиотеки
 import clsx from 'clsx';
-
+import { forwardRef, memo } from 'react';
+// Типизация
 import type { ForwardedRef } from 'react';
 import { ChipsStatus, type ICustomChipProps } from './CustomChip.types';
 

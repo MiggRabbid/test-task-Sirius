@@ -11,3 +11,8 @@ export const CHIP_CLICKABLE_OPTIONS = [
   { label: 'clickable', value: true },
   { label: 'static', value: false },
 ] as const;
+
+export const CHIP_STATUS_OPTIONS = [
+  { label: 'default', value: false },
+  { label: 'colored', value: true },
+] as const;

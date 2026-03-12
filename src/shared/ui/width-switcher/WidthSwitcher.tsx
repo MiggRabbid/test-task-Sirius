@@ -1,6 +1,8 @@
+// Библиотеки
 import { useState } from 'react';
+// Компоненты
 import { CustomButton } from '@/shared/ui/custom-button';
-
+// Типизация
 import type { TWidthOption, TWidthSwitcherProps } from './WidthSwitcher.types';
 
 const WIDTH_OPTIONS: Array<{
@@ -17,11 +19,11 @@ const WIDTH_OPTIONS: Array<{
 const WidthSwitcher = ({ children }: TWidthSwitcherProps) => {
   const [selectedWidth, setSelectedWidth] = useState<TWidthOption>('full');
 
-  const activeWidthStyle =
-    WIDTH_OPTIONS.find(({ label }) => label === selectedWidth)?.style ?? {
-      width: '100%',
-      maxWidth: '100%',
-    };
+  const activeWidthStyle = WIDTH_OPTIONS.find(({ label }) => label === selectedWidth)
+    ?.style ?? {
+    width: '100%',
+    maxWidth: '100%',
+  };
 
   return (
     <div className="flex flex-col gap-4">
