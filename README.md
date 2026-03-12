@@ -86,7 +86,7 @@
 1. Клонировать репозиторий и перейти в папку проекта:
 
 ```bash
-git clone <repo-url>
+git clone git@github.com:MiggRabbid/test-task-Sirius.git
 cd test-task-Sirius
 ```
 
