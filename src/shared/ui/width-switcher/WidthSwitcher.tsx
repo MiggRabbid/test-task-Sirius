@@ -17,7 +17,7 @@ const WIDTH_OPTIONS: Array<{
 ];
 
 const WidthSwitcher = ({ children }: TWidthSwitcherProps) => {
-  const [selectedWidth, setSelectedWidth] = useState<TWidthOption>('full');
+  const [selectedWidth, setSelectedWidth] = useState<TWidthOption>('1280px');
 
   const activeWidthStyle = WIDTH_OPTIONS.find(({ label }) => label === selectedWidth)
     ?.style ?? {

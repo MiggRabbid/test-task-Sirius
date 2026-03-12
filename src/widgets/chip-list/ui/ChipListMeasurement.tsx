@@ -1,16 +1,16 @@
-// Компоненты
-import { CustomChip, type TChipVariant } from '@/shared/ui/custom-chip';
 // Типизация
 import type { RefObject } from 'react';
-import type { IChipsData } from '@/app/types';
-import type { TChipElementRefs } from '../ChipList.types';
+import type { TChipVariant } from '@/shared/ui/custom-chip';
+import type { IChipListItemViewModel, TChipElementRefs } from '../ChipList.types';
+// Компоненты
+import { CustomChip } from '@/shared/ui/custom-chip';
+import ChipListItem from './ChipListItem';
 
 interface IChipListMeasurementProps {
   chipRefs: TChipElementRefs;
   isChipClickable: boolean;
-  items: IChipsData[];
+  items: IChipListItemViewModel[];
   measureMoreButtonRef: RefObject<HTMLButtonElement | null>;
-  selectedChipId: number | null;
   selectedVariant: TChipVariant;
 }
 
@@ -19,7 +19,6 @@ const ChipListMeasurement = ({
   isChipClickable,
   items,
   measureMoreButtonRef,
-  selectedChipId,
   selectedVariant,
 }: IChipListMeasurementProps) => {
   return (
@@ -30,21 +29,18 @@ const ChipListMeasurement = ({
       {/* Скрытый слой нужен только для измерения реальной ширины чипов
       и кнопки переполнения, он не участвует в пользовательском UI. */}
       <div className="flex w-max gap-3">
-        {items.map(({ id, status, text }, index) => (
-          <CustomChip
-            key={id}
-            ref={(element) => {
+        {items.map((item, index) => (
+          <ChipListItem
+            key={item.id}
+            chipRef={(element) => {
               // Сохраняем ссылки на измерительные элементы по тому же индексу,
               // чтобы хук мог сопоставить ширину с исходным массивом items.
               chipRefs.current[index] = element as HTMLButtonElement | null;
             }}
-            clickable={isChipClickable}
-            label={text}
-            status={status}
-            selected={selectedChipId === id}
-            variant={selectedVariant}
-            onClick={() => undefined}
             className="pointer-events-none"
+            isChipClickable={isChipClickable}
+            item={item}
+            selectedVariant={selectedVariant}
           />
         ))}
         <CustomChip

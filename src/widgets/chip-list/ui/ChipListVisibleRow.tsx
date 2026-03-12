@@ -1,5 +1,6 @@
 // Компоненты
 import { CustomChip } from '@/shared/ui/custom-chip';
+import ChipListItem from './ChipListItem';
 // Типизация
 import type { IChipListVisibleRowProps } from '../ChipList.types';
 
@@ -10,7 +11,6 @@ const ChipListVisibleRow = ({
   items,
   onChipClick,
   onOverflowClick,
-  selectedChipId,
   selectedVariant,
   triggerButtonRef,
 }: IChipListVisibleRowProps) => {
@@ -20,15 +20,13 @@ const ChipListVisibleRow = ({
       className="flex w-full items-start justify-start gap-3 overflow-hidden"
       data-isChipClickable={isChipClickable ? 'true' : 'false'}
     >
-      {items.map(({ id, text, status }) => (
-        <CustomChip
-          key={id}
-          clickable={isChipClickable}
-          label={text}
-          status={status}
-          selected={selectedChipId === id}
-          variant={selectedVariant}
-          onClick={() => onChipClick(id)}
+      {items.map((item) => (
+        <ChipListItem
+          key={item.id}
+          isChipClickable={isChipClickable}
+          item={item}
+          onChipClick={onChipClick}
+          selectedVariant={selectedVariant}
         />
       ))}
       {hiddenItemsCount > 0 && (

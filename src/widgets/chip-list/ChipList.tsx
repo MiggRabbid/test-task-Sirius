@@ -9,7 +9,7 @@ import ChipListMeasurement from './ui/ChipListMeasurement';
 import ChipListPopoverContent from './ui/ChipListPopoverContent';
 import ChipListVisibleRow from './ui/ChipListVisibleRow';
 // Типизация
-import type { IChipListProps } from './ChipList.types';
+import type { IChipListItemViewModel, IChipListProps } from './ChipList.types';
 
 const ChipList = ({ isChipClickable, items, selectedVariant }: IChipListProps) => {
   const [selectedChipId, setSelectedChipId] = useState<number | null>(null);
@@ -40,8 +40,15 @@ const ChipList = ({ isChipClickable, items, selectedVariant }: IChipListProps) =
     measureMoreButtonRef,
   });
 
-  const visibleItems = items.slice(0, visibleCount);
-  const hiddenItems = items.slice(visibleCount);
+  const chipItems: IChipListItemViewModel[] = items.map(({ id, status, text }) => ({
+    id,
+    isSelected: selectedChipId === id,
+    label: text,
+    status,
+  }));
+  const visibleItems = chipItems.slice(0, visibleCount);
+  const hiddenItems = chipItems.slice(visibleCount);
+
   const { anchorEl, isOpen, handleClose, handleToggle } =
     useCustomPopover<HTMLButtonElement>({
       isEnabled: hiddenItems.length > 0,
@@ -60,7 +67,6 @@ const ChipList = ({ isChipClickable, items, selectedVariant }: IChipListProps) =
         items={visibleItems}
         onChipClick={handleChipClick}
         onOverflowClick={() => handleToggle(triggerButtonRef.current)}
-        selectedChipId={selectedChipId}
         selectedVariant={selectedVariant}
         triggerButtonRef={triggerButtonRef}
       />
@@ -68,9 +74,8 @@ const ChipList = ({ isChipClickable, items, selectedVariant }: IChipListProps) =
       <ChipListMeasurement
         chipRefs={chipRefs}
         isChipClickable={isChipClickable}
-        items={items}
+        items={chipItems}
         measureMoreButtonRef={measureMoreButtonRef}
-        selectedChipId={selectedChipId}
         selectedVariant={selectedVariant}
       />
 
@@ -79,7 +84,6 @@ const ChipList = ({ isChipClickable, items, selectedVariant }: IChipListProps) =
           isChipClickable={isChipClickable}
           items={hiddenItems}
           onChipClick={handleChipClick}
-          selectedChipId={selectedChipId}
           selectedVariant={selectedVariant}
         />
       </CustomPopover>

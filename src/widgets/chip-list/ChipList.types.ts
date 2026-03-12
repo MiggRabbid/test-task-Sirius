@@ -1,7 +1,7 @@
 import type { RefObject } from 'react';
 
 import type { IChipsData } from '@/app/types';
-import type { TChipVariant } from '@/shared/ui/custom-chip';
+import type { ChipsStatus, TChipVariant } from '@/shared/ui/custom-chip';
 
 export interface IChipListProps {
   isChipClickable: boolean;
@@ -13,24 +13,29 @@ export type TChipElementRefs = {
   current: (HTMLButtonElement | null)[];
 };
 
+export interface IChipListItemViewModel {
+  id: number;
+  isSelected: boolean;
+  label: string;
+  status: ChipsStatus;
+}
+
 export interface IChipListVisibleRowProps {
   containerRef: RefObject<HTMLDivElement | null>;
   hiddenItemsCount: number;
   isChipClickable: boolean;
-  items: IChipsData[];
+  items: IChipListItemViewModel[];
   // eslint-disable-next-line no-unused-vars
   onChipClick: (id: number) => void;
   onOverflowClick: () => void;
-  selectedChipId: number | null;
   selectedVariant: TChipVariant;
   triggerButtonRef: RefObject<HTMLButtonElement | null>;
 }
 
 export interface IChipListPopoverContentProps {
   isChipClickable: boolean;
-  items: IChipsData[];
+  items: IChipListItemViewModel[];
   // eslint-disable-next-line no-unused-vars
   onChipClick: (id: number) => void;
-  selectedChipId: number | null;
   selectedVariant: TChipVariant;
 }
