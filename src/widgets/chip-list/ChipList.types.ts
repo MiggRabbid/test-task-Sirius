@@ -1,5 +1,5 @@
+// Типизация
 import type { RefObject } from 'react';
-
 import type { IChipsData } from '@/app/types';
 import type { ChipsStatus, TChipVariant } from '@/shared/ui/custom-chip';
 

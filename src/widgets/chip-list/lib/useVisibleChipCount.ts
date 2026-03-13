@@ -1,5 +1,6 @@
+// Библиотеки
 import { useLayoutEffect, useState } from 'react';
-
+// Типизация
 import type { RefObject } from 'react';
 import type { TChipElementRefs } from '../ChipList.types';
 

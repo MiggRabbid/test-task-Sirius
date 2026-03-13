@@ -1,3 +1,4 @@
+// Типизация
 import type { ButtonHTMLAttributes, PropsWithChildren } from 'react';
 
 export interface ICustomButtonProps

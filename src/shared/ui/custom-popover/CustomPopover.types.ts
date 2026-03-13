@@ -1,3 +1,4 @@
+// Типизация
 import type { PopoverProps } from '@mui/material';
 import type { PropsWithChildren } from 'react';
 

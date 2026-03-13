@@ -1,4 +1,6 @@
+// Библиотеки
 import { useEffect, useState } from 'react';
+// Типизация
 import type {
   IUseCustomPopoverParams,
   IUseCustomPopoverResult,

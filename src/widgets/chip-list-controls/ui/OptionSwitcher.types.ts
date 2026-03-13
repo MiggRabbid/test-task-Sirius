@@ -1,3 +1,4 @@
+// Типизация
 import type { TChipVariant } from '@/shared/ui/custom-chip';
 
 export type TCustomChipSwitcherValue = TChipVariant | boolean;

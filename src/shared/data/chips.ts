@@ -1,4 +1,6 @@
+// Логика
 import { ChipsStatus } from '@/shared/ui/custom-chip';
+// Типизация
 import type { IChipsData } from '@/app/types';
 
 export const chips: IChipsData[] = [

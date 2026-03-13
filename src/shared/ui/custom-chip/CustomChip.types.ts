@@ -1,3 +1,4 @@
+// Типизация
 import type { MouseEvent, ReactNode } from 'react';
 
 export enum ChipsStatus {

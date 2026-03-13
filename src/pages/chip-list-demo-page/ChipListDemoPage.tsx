@@ -1,13 +1,14 @@
-// Компоненты
-import { WidthSwitcher } from '@/shared/ui/width-switcher';
-import { ChipList } from '@/widgets/chip-list';
+// Логика
 import {
   CHIP_CLICKABLE_OPTIONS,
   CHIP_STATUS_OPTIONS,
   CHIP_VARIANT_OPTIONS,
 } from '@/widgets/chip-list/ChipList.config';
-import ChipListControls from '@/widgets/chip-list-controls/ChipListControls';
 import { useChipList } from '@/app/hooks';
+// Компоненты
+import { WidthSwitcher } from '@/shared/ui/width-switcher';
+import { ChipList } from '@/widgets/chip-list';
+import ChipListControls from '@/widgets/chip-list-controls/ChipListControls';
 
 const ChipListDemoPage = () => {
   // Хук инкапсулирует состояние демо:

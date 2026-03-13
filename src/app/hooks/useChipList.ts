@@ -1,9 +1,10 @@
 // Библиотеки
 import { useState } from 'react';
-// Данные
+// Логика
 import { chips } from '@/shared/data';
-// Компоненты
-import { ChipsStatus, type TChipVariant } from '@/shared/ui/custom-chip';
+import { ChipsStatus } from '@/shared/ui/custom-chip';
+// Типизация
+import type { TChipVariant } from '@/shared/ui/custom-chip';
 
 const getDisplayedChips = (isColoredStatusEnabled: boolean) => {
   return chips.map((chip) => ({

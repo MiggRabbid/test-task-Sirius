@@ -1,9 +1,11 @@
 // Библиотеки
 import clsx from 'clsx';
 import { forwardRef, memo } from 'react';
+// Логика
+import { ChipsStatus } from './CustomChip.types';
 // Типизация
 import type { ForwardedRef } from 'react';
-import { ChipsStatus, type ICustomChipProps } from './CustomChip.types';
+import type { ICustomChipProps } from './CustomChip.types';
 
 const filledStatusClassName: Record<ChipsStatus, string> = {
   [ChipsStatus.default]: 'border-transparent bg-slate-300 text-slate-800',

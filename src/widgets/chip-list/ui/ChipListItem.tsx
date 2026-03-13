@@ -1,9 +1,9 @@
+// Компоненты
+import { CustomChip } from '@/shared/ui/custom-chip';
 // Типизация
 import type { Ref } from 'react';
 import type { TChipVariant } from '@/shared/ui/custom-chip';
 import type { IChipListItemViewModel } from '../ChipList.types';
-// Компоненты
-import { CustomChip } from '@/shared/ui/custom-chip';
 
 interface IChipListItemProps {
   chipRef?: Ref<HTMLButtonElement | HTMLDivElement>;
