@@ -10,6 +10,9 @@ import ChipListControls from '@/widgets/chip-list-controls/ChipListControls';
 import { useChipList } from '@/app/hooks';
 
 const ChipListDemoPage = () => {
+  // Хук инкапсулирует состояние демо:
+  // какой вариант чипов выбран, кликабельны ли они и нужно ли
+  // показывать статусные цвета. Компонент только связывает это состояние с UI.
   const {
     displayedChips,
     isChipClickable,
@@ -23,6 +26,8 @@ const ChipListDemoPage = () => {
   return (
     <div>
       <div className="px-6! py-8!">
+        {/* Блок переключателей меняет состояние демо и пробрасывает
+        выбранные значения обратно в useChipList через обработчики. */}
         <ChipListControls
           variantSwitcher={{
             options: CHIP_VARIANT_OPTIONS,
@@ -41,6 +46,9 @@ const ChipListDemoPage = () => {
           }}
         />
 
+        {/* WidthSwitcher не влияет на данные списка.
+        Он меняет ширину контейнера, чтобы можно было проверить,
+        как ChipList ведёт себя при переполнении на разных брейкпоинтах. */}
         <WidthSwitcher>
           <ChipList
             items={displayedChips}

@@ -19,6 +19,9 @@ const WIDTH_OPTIONS: Array<{
 const WidthSwitcher = ({ children }: TWidthSwitcherProps) => {
   const [selectedWidth, setSelectedWidth] = useState<TWidthOption>('1280px');
 
+  // По выбранному пресету находим style для контейнера примера.
+  // Фолбэк сохраняет корректное поведение, даже если значение когда-то
+  // перестанет совпадать с массивом WIDTH_OPTIONS.
   const activeWidthStyle = WIDTH_OPTIONS.find(({ label }) => label === selectedWidth)
     ?.style ?? {
     width: '100%',

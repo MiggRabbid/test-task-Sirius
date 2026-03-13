@@ -12,13 +12,16 @@ const OptionSwitcher = <T extends TCustomChipSwitcherValue>({
   value,
 }: IOptionSwitcherProps<T>) => {
   return (
+    // Один и тот же компонент обслуживает boolean- и string-переключатели.
+    // Он знает только список опций и текущее значение, не привязываясь
+    // к конкретной настройке чипов.
     <div className="flex flex-wrap justify-end gap-2">
       {options.map((option) => (
         <CustomButton
           key={String(option.value)}
           isActive={value === option.value}
-          // Компонент остаётся универсальным - он просто возвращает
-          // выбранное значение из переданного списка опций.
+          // Кнопка возвращает наружу значение выбранной опции,
+          // а решение, что именно это значение меняет, остаётся у родителя.
           onClick={() => onChange(option.value)}
         >
           {option.label}

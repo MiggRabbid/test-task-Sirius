@@ -26,6 +26,9 @@ const ChipListItem = ({
   return (
     <CustomChip
       ref={chipRef}
+      // Один и тот же компонент используется и в видимой строке, и в поповере,
+      // и в скрытом слое измерения. Поэтому он только адаптирует view-model
+      // списка к API CustomChip, не добавляя собственной логики.
       clickable={isChipClickable}
       label={item.label}
       status={item.status}

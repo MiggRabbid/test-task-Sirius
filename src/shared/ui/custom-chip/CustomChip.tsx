@@ -34,8 +34,9 @@ const CustomChipInner = (
   }: ICustomChipProps,
   ref: ForwardedRef<HTMLButtonElement | HTMLDivElement>,
 ) => {
-  // clickable имеет приоритет над onClick, чтобы родитель мог явно
-  // включать и выключать интерактивность без изменения обработчика.
+  // clickable имеет приоритет над onClick, чтобы родитель мог явно управлять
+  // режимом интерактивности. Это важно для сценария, где обработчик клика
+  // технически существует, но UI временно должен вести себя как статичный.
   const isInteractive = clickable ?? Boolean(onClick);
   const isPressed = isInteractive ? selected : undefined;
 
@@ -43,7 +44,9 @@ const CustomChipInner = (
     variant === 'outlined'
       ? outlinedStatusClassName[status]
       : filledStatusClassName[status];
-  // В selected-состоянии визуальный вариант меняется местами
+  // В selected-состоянии компонент меняет схему местами:
+  // filled становится похож на outlined и наоборот.
+  // Так выделение видно без отдельной палитры для каждого статуса.
   const selectedClassName =
     variant === 'outlined'
       ? filledStatusClassName[status]
@@ -62,6 +65,8 @@ const CustomChipInner = (
 
   if (!isInteractive) {
     return (
+      // Некликабельный чип рендерится как div, чтобы не создавать ложную
+      // интерактивность для клавиатуры, скринридеров и браузерной семантики.
       <div ref={ref as ForwardedRef<HTMLDivElement>} className={commonClassName}>
         <span className="pointer-events-none truncate">{label}</span>
       </div>
@@ -73,6 +78,8 @@ const CustomChipInner = (
       ref={ref as ForwardedRef<HTMLButtonElement>}
       type="button"
       disabled={disabled}
+      // aria-pressed выставляется только для интерактивного режима,
+      // где selected действительно отражает текущее состояние кнопки-переключателя.
       aria-pressed={isPressed}
       onClick={disabled ? undefined : onClick}
       className={commonClassName}

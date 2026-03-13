@@ -10,6 +10,8 @@ const ChipListPopoverContent = ({
   selectedVariant,
 }: IChipListPopoverContentProps) => {
   return (
+    // Поповер рендерит только скрытые элементы, поэтому здесь нет логики
+    // переполнения или измерения - только компактная сетка чипов.
     <div className="flex max-w-[320px] flex-wrap gap-3">
       {items.map((item) => (
         <ChipListItem

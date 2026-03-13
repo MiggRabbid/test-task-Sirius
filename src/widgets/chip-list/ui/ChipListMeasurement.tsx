@@ -26,15 +26,17 @@ const ChipListMeasurement = ({
       aria-hidden="true"
       className="pointer-events-none fixed top-0 left-0 -z-10 opacity-0"
     >
-      {/* Скрытый слой нужен только для измерения реальной ширины чипов
-      и кнопки переполнения, он не участвует в пользовательском UI. */}
+      {/* Этот слой полностью исключён из пользовательского сценария:
+      он невидим, не фокусируется и не ловит события.
+      Его единственная задача - отрендерить те же чипы в "натуральном" размере,
+      чтобы useVisibleChipCount мог снять точные размеры из DOM. */}
       <div className="flex w-max gap-3">
         {items.map((item, index) => (
           <ChipListItem
             key={item.id}
             chipRef={(element) => {
-              // Сохраняем ссылки на измерительные элементы по тому же индексу,
-              // чтобы хук мог сопоставить ширину с исходным массивом items.
+              // Ссылки кладутся по индексу исходного массива,
+              // чтобы расчёт ширин не зависел от id и не требовал дополнительного маппинга.
               chipRefs.current[index] = element as HTMLButtonElement | null;
             }}
             className="pointer-events-none"
@@ -48,8 +50,8 @@ const ChipListMeasurement = ({
           label="..."
           className="pointer-events-none min-w-13 px-4!"
           variant={selectedVariant}
-          // Отдельно измеряем кнопку "...", потому что под неё
-          // резервируется место при расчёте visibleCount.
+          // Кнопка переполнения измеряется отдельно, потому что её ширину
+          // нужно заранее зарезервировать ещё до того, как реальная кнопка появится в строке.
           onClick={() => undefined}
         />
       </div>
